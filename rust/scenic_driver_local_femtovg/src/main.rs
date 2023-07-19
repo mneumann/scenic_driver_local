@@ -37,11 +37,12 @@ fn draw_label<T: Renderer>(
     y: f32,
     _w: f32,
     h: f32,
+    align: Align,
 ) {
     let mut text_paint = Paint::color(Color::rgba(255, 255, 255, 128));
     text_paint.set_font_size(14.0);
     text_paint.set_font(&[font]);
-    text_paint.set_text_align(Align::Left);
+    text_paint.set_text_align(align);
     text_paint.set_text_baseline(Baseline::Middle);
     let _ = canvas.fill_text(x, y + h * 0.5, title, &text_paint);
 }
@@ -140,7 +141,9 @@ fn run(
     surface: glutin::surface::Surface<glutin::surface::WindowSurface>,
     window: Window,
 ) {
-    let font: Option<FontId> = canvas.add_font("assets/Roboto-Regular.ttf").ok();
+    let font_normal : FontId = canvas.add_font("assets/Roboto-Regular.ttf").unwrap();
+    let font_arabic : FontId = canvas.add_font("assets/NotoSansArabic-Black.ttf").unwrap();
+
 
     let mut mousex = 0.0;
     let mut mousey = 0.0;
@@ -213,12 +216,24 @@ fn run(
 
                 draw_label(
                     &mut canvas,
-                    font.unwrap(),
-                    "Login",
+                    font_normal,
+                    "Hallo Leute",
                     200.0,
                     100.0,
                     280.0,
                     20.0,
+                    Align::Left,
+                );
+
+                draw_label(
+                    &mut canvas,
+                    font_arabic,
+                    "سلام دوستان",
+                    200.0,
+                    150.0,
+                    280.0,
+                    20.0,
+                    Align::Right,
                 );
 
                 canvas.flush();
