@@ -1,0 +1,11 @@
+[package]
+name = "scenic_driver_local_femtovg"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+femtovg = "0.7.1"
+glutin = "0.30.9"
+glutin-winit = "0.3.0"
+raw-window-handle = "0.5.2"
+winit = "0.28.6"
